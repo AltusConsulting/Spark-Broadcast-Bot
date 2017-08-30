@@ -1,0 +1,29 @@
+{
+    "scripts": {
+        "start": "node bot.js"
+    },
+    "name": "sparkbot-appd-botkit",
+    "description": "A multi-topic, open-source notification bot for Cisco Spark",
+    "version": "0.0.1",
+    "main": "bot.js",
+    "keywords": [
+        "ciscospark",
+        "botkit",
+        "devnet",
+        "notifications"
+    ],
+    "author": "Rafael Campos (Altus Consulting) <rcampos@altus.cr>",
+    "license": "MIT",
+    "dependencies": {
+        "engines": {
+            "node": "8.2.1"
+        },
+        "botkit": "0.5.7",
+        "botkit-storage-redis": "^1.1.0",
+        "node-env-file": "0.1.8"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-develop-server": "^0.5.2"
+    }
+}

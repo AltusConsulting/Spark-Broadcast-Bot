@@ -1,0 +1,17 @@
+{
+    "name": "mariam",
+    "description": "Mariam: a Cisco Spark notification bot.",
+    "keywords": ["ciscospark", "chatbot", "botkit", "notifications"],
+    "repository": "https://github.com/AltusConsulting/mariam.git",
+    "env": {
+        "PUBLIC_URL": {
+            "description": "Internet facing URL where your bot can be reached."
+        },
+        "SPARK_TOKEN": {
+            "description": "The API access token of your Cisco Spark bot."
+        }
+    },
+    "addons": [
+        "heroku-redis:hobby-dev"
+    ]
+}
