@@ -13,15 +13,8 @@ env(__dirname + '/.env');
 var Mariam = require('./lib/mariam.js');
 
 // Storage
-if (process.env.REDIS_URL) {
-    var redisConfig = { "methods": ['subscriptions'], "url": process.env.REDIS_URL };
-    var storage = require('botkit-storage-redis')(redisConfig);
-    console.log("Using Redis storage at " + process.env.REDIS_URL);
-} else {
-    var jfsStorage = require('./lib/storage.js');
-    var storage = jfsStorage({ path: './jfs' });
-    console.log("Using JFS storage at ./jfs");
-}
+var redisConfig = { "methods": ['subscriptions', 'topics'], "url": process.env.REDIS_URL };
+var storage = require('botkit-storage-redis')(redisConfig);
 
 //
 // BotKit initialization
@@ -80,7 +73,10 @@ String.prototype.format = function() {
     });
 };
 
-var mariamController = Mariam.notifications({
+var notificationController = Mariam.notifications({
+    storage: controller.storage
+});
+var topicController = Mariam.topics({
     storage: controller.storage
 });
 
@@ -90,8 +86,12 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
         console.log("Cisco Spark: Webhooks set up!");
     });
 
-    mariamController.createNotificationEndpoint(webserver, bot, function() {
+    notificationController.createNotificationEndpoints(webserver, bot, function() {
         console.log("Mariam: Notification endpoints set up!");
+    });
+
+    topicController.createTopicEndpoints(webserver, bot, function() {
+        console.log("Mariam: Topic endpoints set up!");
     });
 
     // installing Healthcheck
