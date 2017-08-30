@@ -35,8 +35,8 @@ Click below to quickly deploy the bot to Heroku. You will need the following inf
 From a bash shell, type:
 
 ```shell
-> git clone https://github.com/AltusConsulting/mariam
-> cd mariam
+> git clone https://github.com/AltusConsulting/Mariam
+> cd Mariam
 > npm install
 > SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" node bot.js
 ```
@@ -50,8 +50,8 @@ If you're using Redis, this last command would be:
 From a windows shell, type:
 
 ```shell
-> git clone https://github.com/AltusConsulting/mariam
-> cd mariam
+> git clone https://github.com/AltusConsulting/Mariam
+> cd Mariam
 > npm install
 > set SPARK_TOKEN=0123456789abcdef
 > set PUBLIC_URL=https://abcdef.ngrok.io
