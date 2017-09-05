@@ -13,7 +13,7 @@ env(__dirname + '/.env');
 var Mariam = require('./lib/mariam.js');
 
 // Storage
-var redisConfig = { "methods": ['subscriptions', 'topics'], "url": process.env.REDIS_URL };
+var redisConfig = { "methods": ['subscriptions', 'topics', 'messages'], "url": process.env.REDIS_URL };
 var storage = require('botkit-storage-redis')(redisConfig);
 
 //
