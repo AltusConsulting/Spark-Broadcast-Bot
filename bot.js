@@ -13,8 +13,14 @@ env(__dirname + '/.env');
 var Mariam = require('./lib/mariam.js');
 
 // Storage
-var redisConfig = { "methods": ['subscriptions', 'topics', 'messages'], "url": process.env.REDIS_URL };
-var storage = require('botkit-storage-redis')(redisConfig);
+var redisConfig = {
+    "hash_methods": ['subscriptions', 'topics'],
+    "sorted_set_methods": ['messages'],
+    "url": process.env.REDIS_URL,
+    "namespace": "mariam"
+};
+
+var storage = require('./lib/storage.js')(redisConfig);
 
 //
 // BotKit initialization
