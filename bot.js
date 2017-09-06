@@ -79,6 +79,9 @@ var notificationController = Mariam.notifications({
 var topicController = Mariam.topics({
     storage: controller.storage
 });
+var messageController = Mariam.messages({
+    storage: controller.storage
+});
 
 // Start Bot API
 controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
@@ -92,6 +95,10 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 
     topicController.createTopicEndpoints(webserver, bot, function() {
         console.log("Mariam: Topic endpoints set up!");
+    });
+
+    messageController.createMessageEndpoints(webserver, bot, function() {
+        console.log("Mariam: Message endpoints set up!");
     });
 
     // installing Healthcheck
