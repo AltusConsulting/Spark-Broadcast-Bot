@@ -95,6 +95,12 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
         console.log("Cisco Spark: Webhooks set up!");
     });
 
+    webserver.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+
     notificationController.createNotificationEndpoints(webserver, bot, function() {
         console.log("Mariam: Notification endpoints set up!");
     });
