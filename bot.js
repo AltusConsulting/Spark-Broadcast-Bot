@@ -14,7 +14,7 @@ var Mariam = require('./lib/mariam.js');
 
 // Storage
 var redisConfig = {
-    "hash_methods": ['subscriptions', 'topics'],
+    "hash_methods": ['subscriptions', 'topics', 'counter'],
     "sorted_set_methods": ['messages'],
     "url": process.env.REDIS_URL,
     "namespace": "mariam"

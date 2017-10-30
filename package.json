@@ -15,12 +15,14 @@
     "author": "Rafael Campos (Altus Consulting) <rcampos@altus.cr>",
     "license": "MIT",
     "dependencies": {
+        "botkit": "0.5.7",
+        "botkit-storage-redis": "^1.1.0",
         "engines": {
             "node": "8.2.1"
         },
-        "botkit": "0.5.7",
-        "botkit-storage-redis": "^1.1.0",
-        "node-env-file": "0.1.8"
+        "jfs": "^0.2.6",
+        "node-env-file": "0.1.8",
+        "uuid": "^3.1.0"
     },
     "devDependencies": {
         "gulp": "^3.9.1",
