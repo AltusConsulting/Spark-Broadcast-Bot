@@ -1,8 +1,8 @@
 {
-    "name": "Mariam",
-    "description": "Mariam: a Cisco Spark notification bot.",
+    "name": "Spark Broadcast Bot",
+    "description": "Spark Broadcast Bot: a Cisco Spark notification bot.",
     "keywords": ["ciscospark", "chatbot", "botkit", "notifications"],
-    "repository": "https://github.com/AltusConsulting/Mariam.git",
+    "repository": "https://github.com/AltusConsulting/Spark-Broadcast-Bot.git",
     "env": {
         "PUBLIC_URL": {
             "description": "Internet facing URL where your bot can be reached."

@@ -10,14 +10,14 @@
 var env = require('node-env-file');
 env(__dirname + '/.env');
 
-var Mariam = require('./lib/mariam.js');
+var Broadcast = require('./lib/broadcast.js');
 
 // Storage
 var redisConfig = {
     "hash_methods": ['subscriptions', 'topics', 'counter'],
     "sorted_set_methods": ['messages'],
     "url": process.env.REDIS_URL,
-    "namespace": "mariam"
+    "namespace": "broadcast"
 };
 
 var storage = require('./lib/storage.js')(redisConfig);
@@ -79,13 +79,13 @@ String.prototype.format = function() {
     });
 };
 
-var notificationController = Mariam.notifications({
+var notificationController = Broadcast.notifications({
     storage: controller.storage
 });
-var topicController = Mariam.topics({
+var topicController = Broadcast.topics({
     storage: controller.storage
 });
-var messageController = Mariam.messages({
+var messageController = Broadcast.messages({
     storage: controller.storage
 });
 
@@ -103,15 +103,15 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
     });
 
     notificationController.createNotificationEndpoints(webserver, bot, function() {
-        console.log("Mariam: Notification endpoints set up!");
+        console.log("Broadcast Bot: Notification endpoints set up!");
     });
 
     topicController.createTopicEndpoints(webserver, bot, function() {
-        console.log("Mariam: Topic endpoints set up!");
+        console.log("Broadcast Bot: Topic endpoints set up!");
     });
 
     messageController.createMessageEndpoints(webserver, bot, function() {
-        console.log("Mariam: Message endpoints set up!");
+        console.log("Broadcast Bot: Message endpoints set up!");
     });
 
     // installing Healthcheck
