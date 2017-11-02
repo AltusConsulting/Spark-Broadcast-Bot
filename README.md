@@ -11,6 +11,7 @@ First things first. Go ahead and create a Bot Account from the ['Spark for devel
 Click below to quickly deploy the bot to Heroku. You will need the following information:
 * Your Spark token
 * Your public URL (for a Heroku deployment this would be `https://{app-name}.herokuapp.com`, where `{app-name}` is the name you chose for your Heroku app).
+* The domain the bot will accept messages from, for example '@companyabc.com' or '@altus.cr'
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -38,13 +39,13 @@ From a bash shell, type:
 > git clone https://github.com/AltusConsulting/Spark-Broadcast-Bot.git
 > cd Spark-Broadcast-Bot
 > npm install
-> SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" node bot.js
+> SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" ALLOWED_DOMAIN=@altus.cr node bot.js
 ```
 
 If you're using Redis, this last command would be:
 
 ```shell
-> SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" REDIS_URL=redis://localhost:6379/1 node bot.js
+> SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" REDIS_URL=redis://localhost:6379/1 ALLOWED_DOMAIN=@altus.cr node bot.js
 ```
 
 From a windows shell, type:
@@ -56,6 +57,7 @@ From a windows shell, type:
 > set SPARK_TOKEN=0123456789abcdef
 > set PUBLIC_URL=https://abcdef.ngrok.io
 > set SECRET=not that secret
+> set ALLOWED_DOMAIN=@altus.cr
 > node bot.js
 ```
 
