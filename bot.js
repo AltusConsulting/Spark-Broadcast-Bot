@@ -22,6 +22,9 @@ var redisConfig = {
 
 var storage = require('./lib/storage.js')(redisConfig);
 
+var basicAuth = require('express-basic-auth');
+
+
 //
 // BotKit initialization
 //
@@ -95,6 +98,13 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
     controller.createWebhookEndpoints(webserver, bot, function() {
         console.log("Cisco Spark: Webhooks set up!");
     });
+
+    var users = {};
+    users[process.env.API_USERNAME] = process.env.API_PASSWORD;
+
+    webserver.use(basicAuth({
+        users: users
+    }))
 
     webserver.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
