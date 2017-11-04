@@ -1,0 +1,16 @@
+<div class="topics-alts">
+
+  <div class="col text-center">
+    <h3>
+      <small class="text-muted" style="margin-bottom: 0px;">{{title}}</small>
+    </h3>
+    <br>
+  </div>
+  <input [(ngModel)]="topic_data.id" style="width: 864px" type="email" class="form-control" id="topic" aria-describedby="emailHelp" placeholder="{{placeholder}}">
+  <br>
+  <div class="col text-right">
+    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">{{btn_cancel}}</button>
+    <button type="submit" class="btn btn-info" (click)="send()" [disabled]="!dataCheck()">{{btn_send}}</button>
+  </div>
+
+</div>

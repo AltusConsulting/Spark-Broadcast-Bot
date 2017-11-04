@@ -1,0 +1,58 @@
+<nav class="navbar navbar-toggleable-md navbar-light fixed-top bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  <a class="navbar-brand" [routerLink]="['/notifications']"><i class="fa fa-home" aria-hidden="true"></i>{{title}}</a>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto" *ngIf="showHide()">
+    </ul>
+    <div class="navbar-nav" *ngIf="showHide()">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-user" aria-hidden="true"></i>User
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" [routerLink]="['/login']" (click)="logoutClick($event)">{{logout}}</a>
+        </div>
+      </li>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="starter-template">
+    <div *ngIf="!showHide()">
+        <router-outlet></router-outlet>
+        <div>
+            <footer class="footer-alts">
+              <a>{{title}}</a><br>
+              {{copyright}}
+              <br>
+            </footer>
+          </div>
+    </div>
+    <div *ngIf="showHide()">
+        <div class="row">
+            <div class="col-md-3 bg-faded sidebar">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="filter_topic">
+                  <span class="input-group-btn">
+                    <button class="btn btn-info" type="button" [routerLink]="['/topics']">+</button>
+                  </span>
+                </div>
+                <ul class="list-group">
+                    <li *ngFor="let obj of topics | filter : filter_topic" class="list-group-item bg-faded" style="border: none">
+                        <i class="fa fa-comment-o" aria-hidden="true" [ngStyle]="{'background': obj.color, 'padding':'10px', 'border-radius':'50%', 'color': '#fff'}"></i>
+                        <a class="col text-left nav-link text-muted" [routerLink]="['/messages']" [queryParams]="{id: obj.id, desc: obj.text, color: obj.color}">{{obj.text}}</a>
+                        <app-delete-topics [obj]="obj" [topics]="topics"></app-delete-topics>
+                    </li>
+                  </ul>
+            </div>
+            <main class="col-sm-9 offset-sm-3 col-md-9 pt-3">
+                <router-outlet></router-outlet>
+            </main>
+    </div>
+  </div>  
+</div>

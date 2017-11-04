@@ -1,0 +1,100 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/_variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import "../node_modules/font-awesome/scss/font-awesome.scss";
+
+
+body {
+    padding-top: $padding_body;
+}
+
+.starter-template {
+    padding: $padding_starter;
+}
+
+.footer-alts {
+    text-align: $text-align-alts;
+    padding: $padding-alts;
+    margin-top: $margin-top-alts;
+    border-top: $border-top-alts;
+    background-color: $background-color-alts;
+}
+
+.inline-comp-alts {
+    display: $display-inline-comp-alts;
+}
+
+
+.circle-icon {
+  background: #ffc0c0;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+//topics
+.topics-alts {
+  padding: 70px 70px 0px 70px;
+}
+
+//splash
+.splash {
+  width: 800px;
+  height: 400px;
+  background-color: #00d4f3;
+  display:inline-block;
+}
+
+#sidebar-right {
+  height:100%;
+  width: 286px;
+  position:fixed;
+  right:0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+//css nav sidebar
+h1 {
+    margin-bottom: 20px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /*
+   * Sidebar
+   */
+  
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    border-right: 1px solid #eee;
+  }
+  
+  /* Sidebar navigation */
+  .sidebar {
+    padding-left: 0; 
+    padding-right: 0;
+  }
+  
+  .sidebar .list-group {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar .list-group-item {
+    width: 100%;
+  }
+  
+  .sidebar .list-group-item + .list-group-item {
+    margin-left: 0;
+  }
+  
+  .sidebar .nav-link {
+    border-radius: 0;
+  }

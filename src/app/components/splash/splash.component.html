@@ -1,0 +1,42 @@
+<div class="col text-left" style="margin: 14px">
+    <button type="submit" class="btn btn-info" [routerLink]="['/notifications']"><i class="fa fa-arrow-left" aria-hidden="true"></i>{{btnback}}</button>
+</div>
+
+<div *ngIf="topics_content == 0">
+    <div class="col text-center">
+        <h3>
+            <small class="text-muted" style="margin-bottom: 0px;">{{notfound}}</small>
+        </h3>
+        <br>
+    </div>
+</div>
+
+<div *ngIf="messages" class="col text-center">
+    <h3>
+        <small class="text-muted" style="margin-bottom: 0px;">{{statistics}}</small>
+    </h3>
+    <br>
+</div>
+
+<div *ngFor="let data of messages">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th attr.colspan="{{topics_count}}">
+                    <i class="fa fa-comment-o" aria-hidden="true" [ngStyle]="{'color': '#00d4f3'}"></i>
+                    {{ header_messg }} {{ data['mensaje'][0]['contenido'] }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2" style="color: #00d4f3">
+                    {{ general }} {{ data['mensaje'][0]['total'] }} / {{ data['mensaje'][0]['total'] }} {{ text_people }}
+                </td>
+                <td attr.rowspan="2" *ngFor="let obj of data['mensaje'][0]['topics']">
+                    {{ topic_title }} {{ obj['topic'] }} {{ obj['total'] }} / {{ obj['total'] }} {{ text_people }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

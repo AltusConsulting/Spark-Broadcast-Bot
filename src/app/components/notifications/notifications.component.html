@@ -1,0 +1,19 @@
+<div *ngIf="splash" class="col text-right">
+    <i class="fa fa-envelope-o fa-2x nav-link" aria-hidden="true" [routerLink]="['/splash']" style="color: #00d4f3"></i>
+</div>
+
+<div class="col text-center">
+  <h3>
+    <small class="text-muted" style="margin-bottom: 0px;">{{new_massage}}</small>
+  </h3>
+  <br>
+</div>
+<ng-select (removed)="removed($event)" [disabled]="disabled" [multiple]="true" [items]="topics" placeholder="{{placeholder}}"
+  (selected)="selected($event)"></ng-select>
+<br>
+<md-editor name="Content" [(ngModel)]="notification_data.message" [height]="'350px'" [mode]="mode" [options]="options" required
+  maxlength="10000"></md-editor>
+<div class="col text-right">
+  <button type="button" class="btn btn-outline-secondary" (click)="cancel()">{{btncancel}}</button>
+  <button type="submit" class="btn btn-info" (click)="sendNotification()" [disabled]="!dataCheck()">{{btnsend}}</button>
+</div>
