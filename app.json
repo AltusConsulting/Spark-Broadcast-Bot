@@ -12,6 +12,21 @@
         },
         "ALLOWED_DOMAIN": {
             "description": "The domain from which messages can be received by the bot."
+        },
+        "ALLOWED_ADMIN": {
+            "description": "The Spark email address of the administrator."
+        },
+        "SECRET": {
+            "description": "Secret phrase used to verify authenticity of the Spark messages."
+        },
+        "CLIENT_ID": {
+            "description": "This is the client id obtained when creating the integration in Spark for Developers."
+        },
+        "CLIENT_SECRET": {
+            "description": "This is the client secret obtained when creating the integration in Spark for Developers."
+        },
+        "REDIRECT_URI": {
+            "description": "This is the URI where the user is redirected to after authentication"
         }
     },
     "addons": [

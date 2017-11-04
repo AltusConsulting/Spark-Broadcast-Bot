@@ -84,14 +84,26 @@ String.prototype.format = function() {
 };
 
 var notificationController = Broadcast.notifications({
-    storage: controller.storage
+    storage: controller.storage,
+    token_secret: process.env.SECRET
 });
 var topicController = Broadcast.topics({
-    storage: controller.storage
+    storage: controller.storage,
+    token_secret: process.env.SECRET
 });
 var messageController = Broadcast.messages({
-    storage: controller.storage
+    storage: controller.storage,
+    token_secret: process.env.SECRET
 });
+var authController = Broadcast.auth({
+    storage: controller.storage,
+    client_id: process.env.CLIENT_ID,
+    client_secret: process.env.CLIENT_SECRET,
+    redirect_uri: process.env.REDIRECT_URI,
+    allowed_admin: process.env.ALLOWED_ADMIN,
+    token_secret: process.env.SECRET
+});
+
 
 // Start Bot API
 controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
@@ -99,17 +111,10 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
         console.log("Cisco Spark: Webhooks set up!");
     });
 
-    var users = {};
-    users[process.env.API_USERNAME] = process.env.API_PASSWORD;
-
-    webserver.use(basicAuth({
-        users: users
-    }))
-
     webserver.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token");
         next();
     });
 
@@ -123,6 +128,10 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 
     messageController.createMessageEndpoints(webserver, bot, function() {
         console.log("Broadcast Bot: Message endpoints set up!");
+    });
+
+    authController.createAuthEndpoints(webserver, bot, function() {
+        console.log("Broadcast Bot: Auth endpoints set up!");
     });
 
     // installing Healthcheck
