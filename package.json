@@ -3,7 +3,7 @@
         "preinstall": "npm i -g ts-node typescript @angular/cli@1.2.0 @angular/compiler-cli@^4.0.0",
         "ng": "ng",
         "config": "ts-node ./src/set-env.ts",
-        "start": "npm run config -- --environment=$OAUTH_URL --environment=$PUBLIC_URL && ng build --base-href /dist/ && node bot.js"
+        "start": "npm run config -- --environment=$OAUTH_URL --environment=$PUBLIC_URL && ng build && node bot.js"
     },
     "name": "sparkbot-appd-botkit",
     "description": "A multi-topic, open-source notification bot for Cisco Spark",
