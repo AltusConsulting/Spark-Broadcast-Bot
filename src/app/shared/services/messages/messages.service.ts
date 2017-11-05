@@ -30,7 +30,7 @@ export class MessagesService {
         },
         headers: this.headers
     });
-    return this._http.get(this.url + '/messages', this.options).map(
+    return this._http.get(this.url + '/api/v1/messages', this.options).map(
       result => result.json(),
       error => error.json()
     )
@@ -43,7 +43,7 @@ export class MessagesService {
     this.options = new RequestOptions({
       headers: this.headers
     });
-    return this._http.get(this.url + '/topics/' + topic_id, this.options).map(
+    return this._http.get(this.url + '/api/v1/topics/' + topic_id, this.options).map(
       result => result.json(),
       error => error.json()
     );

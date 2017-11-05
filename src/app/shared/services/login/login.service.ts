@@ -47,7 +47,7 @@ sparkLogin() {
               code: code
             }
         });
-        return this._http.get(this.url + '/auth/token', this.options).map(
+        return this._http.get(this.url + '/api/v1/auth/token', this.options).map(
             result => {
                 this.token = result.json().access_token;
                 if (this.token === undefined) {
