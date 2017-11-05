@@ -7,6 +7,8 @@ Inspired by [BotKit samples for Cisco Spark](https://github.com/CiscoDevNet/botk
 
 1. Click the **Deploy to Heroku** button below and choose a name for your app. Heroku will tell you right away if it's a valid name or not. Leave this page open because you will come back soon to complete the process.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 2. Create a Bot Account from the ['Spark for developers' bot creation page](https://developer.ciscospark.com/add-bot.html). 
     - Choose a display name, a valid username and an icon for your bot. 
     - Press the **Add Bot** button and wait for your bot to be created. 
@@ -48,27 +50,27 @@ Inspired by [BotKit samples for Cisco Spark](https://github.com/CiscoDevNet/botk
 
     After the process is done, your bot should be up and running and the administrator specified in the **ALLOWED_ADMIN** config variable should now be able to log into the management app at `https://{app-name}.herokuapp.com`.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 
 
 ## Management app
 
 Log into the management app at `https://{app-name}.herokuapp.com` by clicking **Login with Spark**.
 
-    ![bot-creation](docs/img/management-app.png)
+![bot-creation](docs/img/management-app.png)
 
-    - You will be redirected to the Cisco Spark login page where you can input your credentials.
+- You will be redirected to the Cisco Spark login page where you can input your credentials.
 
-    ![bot-creation](docs/img/spark-credentials-1.png)
-    ![bot-creation](docs/img/spark-credentials-2.png)
+![bot-creation](docs/img/spark-credentials-1.png)
+![bot-creation](docs/img/spark-credentials-2.png)
 
-    - You will be asked if you want to allow the app to read your company directory and  encrypt and decrypt messages. Click **Accept**.
+- You will be asked if you want to allow the app to read your company directory and  encrypt and decrypt messages. Click **Accept**.
 
-    ![bot-creation](docs/img/app-authorization.png)
+![bot-creation](docs/img/app-authorization.png)
 
-    - You should be redirected back to the app, where you now can manage your notification bot.
+- You should be redirected back to the app, where you now can manage your notification bot.
 
-    ![bot-creation](docs/img/logged-into-app.png)
+![bot-creation](docs/img/logged-into-app.png)
 
 # TODO: instructions for using the web app
 
