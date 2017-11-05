@@ -131,6 +131,11 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 
     });
 
+    webserver.get('/avatar.png', function(req, res) {
+        res.sendFile(path.join(__dirname, 'lib/images/avatar.png'));
+
+    });
+
     notificationController.createNotificationEndpoints(webserver, bot, function() {
         console.log("Broadcast Bot: Notification endpoints set up!");
     });
