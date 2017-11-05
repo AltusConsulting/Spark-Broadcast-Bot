@@ -83,17 +83,22 @@ String.prototype.format = function() {
     });
 };
 
+var api_base_url = "/api/v1";
+
 var notificationController = Broadcast.notifications({
     storage: controller.storage,
-    token_secret: process.env.SECRET
+    token_secret: process.env.SECRET,
+    api_base_url: api_base_url
 });
 var topicController = Broadcast.topics({
     storage: controller.storage,
-    token_secret: process.env.SECRET
+    token_secret: process.env.SECRET,
+    api_base_url: api_base_url
 });
 var messageController = Broadcast.messages({
     storage: controller.storage,
-    token_secret: process.env.SECRET
+    token_secret: process.env.SECRET,
+    api_base_url: api_base_url
 });
 var authController = Broadcast.auth({
     storage: controller.storage,
@@ -101,7 +106,8 @@ var authController = Broadcast.auth({
     client_secret: process.env.CLIENT_SECRET,
     redirect_uri: process.env.REDIRECT_URI,
     allowed_admin: process.env.ALLOWED_ADMIN,
-    token_secret: process.env.SECRET
+    token_secret: process.env.SECRET,
+    api_base_url: api_base_url
 });
 
 
