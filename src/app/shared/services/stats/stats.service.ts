@@ -24,7 +24,7 @@ export class StatsService {
       this.options = new RequestOptions({
         headers: this.headers
       });
-     return this._http.get(this.url + '/topics/' + id, this.options).map(
+     return this._http.get(this.url + '/api/v1/topics/' + id, this.options).map(
       result => result.json(),
       error => error.json()
      );

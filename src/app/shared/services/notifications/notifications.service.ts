@@ -23,7 +23,7 @@ export class NotificationsService {
     this.options = new RequestOptions({
       headers: this.headers
     });
-    return this._http.get(this.url + '/topics', this.options).map(
+    return this._http.get(this.url + '/api/v1/topics', this.options).map(
       result => result.json(),
       error => error.json()
     );
@@ -36,7 +36,7 @@ export class NotificationsService {
     this.options = new RequestOptions({
       headers: this.headers
     });
-    return this._http.post(this.url + '/notifications', obj, this.options).map(
+    return this._http.post(this.url + '/api/v1/notifications', obj, this.options).map(
       result => {
         return result;
       },
@@ -53,7 +53,7 @@ export class NotificationsService {
     this.options = new RequestOptions({
       headers: this.headers
     });
-    return this._http.delete(this.url + '/topics/' + obj.id, this.options).map(
+    return this._http.delete(this.url + '/api/v1/topics/' + obj.id, this.options).map(
       result => {
         return result;
       },
@@ -70,7 +70,7 @@ export class NotificationsService {
     this.options = new RequestOptions({
       headers: this.headers
     });
-    return this._http.get(this.url + '/topics/' + id, this.options).map(
+    return this._http.get(this.url + '/api/v1/topics/' + id, this.options).map(
       result => result.json(),
       error => error.json()
     );

@@ -24,7 +24,7 @@ export class TopicsService {
     this.options = new RequestOptions({
       headers: this.headers
     });
-    return this._http.post(this.url + '/topics', obj, this.options).map(
+    return this._http.post(this.url + '/api/v1/topics', obj, this.options).map(
       result => {
         return result;
       },
