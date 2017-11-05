@@ -126,11 +126,6 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
         next();
     });
 
-    webserver.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname, 'dist/index.html'));
-
-    });
-
     webserver.get('/avatar.png', function(req, res) {
         res.sendFile(path.join(__dirname, 'lib/images/avatar.png'));
 
@@ -150,6 +145,11 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 
     authController.createAuthEndpoints(webserver, bot, function() {
         console.log("Broadcast Bot: Auth endpoints set up!");
+    });
+
+    webserver.get('/*', function(req, res) {
+        res.sendFile(path.join(__dirname, 'dist/index.html'));
+
     });
 
     // installing Healthcheck
