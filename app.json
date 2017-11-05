@@ -27,6 +27,9 @@
         },
         "REDIRECT_URI": {
             "description": "This is the URI where the user is redirected to after authentication"
+        },
+        "OAUTH_URL": {
+            "description": "This is the URL for the authentication with Cisco Spark"
         }
     },
     "addons": [
