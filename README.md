@@ -2,84 +2,90 @@
 
 Inspired by [BotKit samples for Cisco Spark](https://github.com/CiscoDevNet/botkit-ciscospark-samples) by Stève Sfartz <mailto:stsfartz@cisco.com>
 
-## Instructions for deployment
 
-First things first. Go ahead and create a Bot Account from the ['Spark for developers' bot creation page](https://developer.ciscospark.com/add-bot.html), and copy your bot's access token.
+## Instructions for deployment to Heroku
 
-## Heroku deployment
-
-Click below to quickly deploy the bot to Heroku. You will need the following information:
-* Your Spark token
-* Your public URL (for a Heroku deployment this would be `https://{app-name}.herokuapp.com`, where `{app-name}` is the name you chose for your Heroku app).
-* The domain the bot will accept messages from, for example '@companyabc.com' or '@altus.cr'
+1. Click the **Deploy to Heroku** button below and choose a name for your app. Heroku will tell you right away if it's a valid name or not. Leave this page open because you will come back soon to complete the process.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-## Local deployment
+2. Create a Bot Account from the ['Spark for developers' bot creation page](https://developer.ciscospark.com/add-bot.html). 
+    - Choose a display name, a valid username and an icon for your bot. 
+    - Press the **Add Bot** button and wait for your bot to be created. 
+    - Copy your bot's **Access Token**.
 
-1. Choose your storage type. You have two options: local storage using [JSON File Store (JFS)](https://www.npmjs.com/package/jfs) or [Redis](https://redis.io/), a NO-SQL, in-memory data structure store. If you choose to use JFS, you don't have to install anything yourself. If you choose to use Redis you'll need to [download](https://redis.io/download) and install it on your local machine, with the default settings (port 6379).
+![bot-creation](docs/img/bot-creation.png)
 
-1. [Optional] Cisco Spark uses a webhook to send incoming messages to your bot, but webhooks require a public IP address. If you don't have one, you can use [ngrok](https://ngrok.com) to create a tunnel to your machine. Launch ngrok to expose port 3000 of your local machine to the internet:
+3. Create an Integration from the ['Spark for developers' integration creation page](https://developer.ciscospark.com/add-integration.html). 
+    - Choose a name, a description, a support email and an icon for your integration. 
+    - In the **Redirect URI(s)** box write `https://{app-name}.herokuapp.com`, where `{app-name}` is the name you chose for your Heroku app in step 1.
+    - In the **Scopes** section, select `spark:people_read`.
+    - Press the **Add Integration** button and wait for your bot to be created.
 
-    ```shell
-    ngrok http 3000
-    ```
+    ![bot-creation](docs/img/integration-creation-1.png)
 
-    Pick the HTTPS address that ngrok is now exposing. Note that ngrok exposes HTTP and HTTPS protocols, make sure to pick the HTTPS address.
+    - Copy the **Client ID**
+    - Copy the **Client Secret**
+    - Copy the **OAuth Authorization URL**
 
-1. [Optional] Open the `.env` file and modify the settings to accomodate your bot.
+     ![bot-creation](docs/img/integration-creation-2.png)
 
-    _Note that you can also specify any of these settings via env variables. In practice, the values on the command line or in your machine env will prevail over .env file settings. In the example below, we do not modify any value in settings and specify all configuration values on the command line._
+4. Go back to Heroku and scroll down until you reach the **Config Variables** section. Fill them according to the following instructions:
+    - **PUBLIC_URL**: Write here `https://{app-name}.herokuapp.com` where `{app-name}` is the name of your Heroku app.
+    - **SPARK_TOKEN**: Write here the token you got when you created your Spark bot.
+    - **ALLOWED_DOMAIN**: Write here the domain that's authorized to send messages to your bot. Write in the format `@mydomain.com`.
+    - **ALLOWED_ADMIN**: Write here the Spark username of the person authorized to manage the web application.
+    - **SECRET**: Write here any secret phrase. This is used to validate both Spark's messages to the bot and to generate the authentication tokens used by the app backend.
+    - **CLIENT_ID**: Write here the client id you got when creating the integration.
+    - **CLIENT_SECRET**: Write here the client secret you got when creating the integration.
+    - **REDIRECT_URI**: Write the URI you specified when creating the integration. It's `https://{app-name}.herokuapp.com` where `{app-name}` is the name of your Heroku app.
+    - **OAUTH_URL**: Write the **OAuth Authorization URL** you got when creating the integration.
+    - Click **Deploy app**
 
-1. You're ready to run your bot
+    ![bot-creation](docs/img/heroku-parameters.png)
 
-From a bash shell, type:
+    Your application will now be created, configured, built and deployed to Heroku. 
 
-```shell
-> git clone https://github.com/AltusConsulting/Spark-Broadcast-Bot.git
-> cd Spark-Broadcast-Bot
-> npm install
-> SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" ALLOWED_DOMAIN=@altus.cr node bot.js
-```
+    ![bot-creation](docs/img/app-deployment.png)
 
-If you're using Redis, this last command would be:
-
-```shell
-> SPARK_TOKEN=0123456789abcdef PUBLIC_URL=https://abcdef.ngrok.io SECRET="not that secret" REDIS_URL=redis://localhost:6379/1 ALLOWED_DOMAIN=@altus.cr node bot.js
-```
-
-From a windows shell, type:
-
-```shell
-> git clone https://github.com/AltusConsulting/Spark-Broadcast-Bot.git
-> cd Spark-Broadcast-Bot
-> npm install
-> set SPARK_TOKEN=0123456789abcdef
-> set PUBLIC_URL=https://abcdef.ngrok.io
-> set SECRET=not that secret
-> set ALLOWED_DOMAIN=@altus.cr
-> node bot.js
-```
-
-If you're using Redis, you'll need to add an additional environment variable before launching the bot:
-
-```shell
-> set REDIS_URL=redis://localhost:6379/1
-```
-
-where:
-
-- SPARK_TOKEN is the API access token of your Cisco Spark bot.
-- PUBLIC_URL is the root URL at which Cisco Spark can reach your bot. If you're using ngrok, this should be the URL ngrok exposes when you run it. 
-- SECRET is the secret that Cisco Spark uses to sign the JSON webhooks events posted to your bot.
-- REDIS_URL is the URL of the Redis instance you installed.
+    After the process is done, your bot should be up and running and the administrator specified in the **ALLOWED_ADMIN** config variable should now be able to log into the management app at `https://{app-name}.herokuapp.com`.
 
 
-## Notifications Module
+
+
+## Management app
+
+Log into the management app at `https://{app-name}.herokuapp.com` by clicking **Login with Spark**.
+
+![bot-creation](docs/img/management-app.png)
+
+- You will be redirected to the Cisco Spark login page where you can input your credentials.
+
+![bot-creation](docs/img/spark-credentials-1.png)
+![bot-creation](docs/img/spark-credentials-2.png)
+
+- You will be asked if you want to allow the app to read your company directory and  encrypt and decrypt messages. Click **Accept**.
+
+![bot-creation](docs/img/app-authorization.png)
+
+- You should be redirected back to the app, where you now can manage your notification bot.
+
+![bot-creation](docs/img/logged-into-app.png)
+
+# TODO: instructions for using the web app
+
+
+## Interacting with the bot
+
+Add your bot to Cisco Spark.
+
+![bot-creation](docs/img/add-bot-to-spark.png)
+
+Say `help` to the bot to see all the commands it understands.
+
+![bot-creation](docs/img/bot-help.png)
 
 The notifications module allows you to subscribe to specific topics offered by your organization.
-
-### Subscribing to a notification
 
 You can subscribe to a notification by telling the bot:
 
@@ -118,18 +124,5 @@ or, for short:
 show sub
 ```
 
-## Sending messages to the bot 
+# TODO: instructions for using the bot
 
-The bot implements a REST API for receiving messages. The resource to send messages to is `/notifications`. For example, if your PUBLIC_URL is `https://960eeccc.ngrok.io`, then you need to send your messages to:
-```
-https://960eeccc.ngrok.io/notifications
-```
-
-The REST API accepts JSON, like so:
-
-```json
-{
-	"topic": "name-of-the-topic",
-	"message": "This is the message that will be sent to all subscribers of this specific topic."
-}
-```
