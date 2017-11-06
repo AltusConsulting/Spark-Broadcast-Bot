@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { LoginService } from '../../shared/services/login/login.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from 'lodash';
 
 @Component({
@@ -17,9 +18,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef
+
   ) {
     this.spark_boton = 'Login with spark';
+    this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
@@ -32,14 +37,17 @@ export class LoginComponent implements OnInit {
                 if (result) {
                   this._router.navigate(['/notifications']);
                 } else {
-                  this.error = 'El usuario no tiene permiso para acceder a la aplicación';
-                  //toast
-                  console.log(this.error);
+                  console.log('result:',result);
                 }
+              },
+              error => {
+                let mssg = 'User does not have permission to access the application!';
+                this.showMessage(mssg);
+                this._router.navigate(['/']);
               }
             );
           } else {
-            console.log("dasdasd");
+            console.log("Empty url params");
           }
         });
       }
@@ -55,6 +63,11 @@ export class LoginComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  showMessage(mssg) {
+    let obj = {toastLife: '3000'};
+    this.toastr.warning(mssg, 'Alert!', obj);
   }
 
 }
