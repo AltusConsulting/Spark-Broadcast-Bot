@@ -44,9 +44,15 @@ export class NotificationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.splash = true;
-    this.app_comp.loadTopics();
-    this.getTopics();
+    if (this.checkInit()) {
+      DATA_SHARED.count = 1;
+      this.splash = true;
+      this.app_comp.loadTopics();
+      this.getTopics();
+    } else {
+      this.splash = true;
+      this.getTopics();
+    }
   }
 
   getTopics() {
@@ -112,7 +118,7 @@ export class NotificationsComponent implements OnInit {
       this._notification.sendNotifications(this.notification_data).subscribe(
         result => {
           if (result.status == 200) {
-            this.cancel();
+            //this.cancel();
           }
         },
         error => {
@@ -124,7 +130,7 @@ export class NotificationsComponent implements OnInit {
 
   cancel() {
     this.notification_data.message = "";
-    this.selected_data = [];
+    //this.selected_data = [];
   }
 
   deleteTopic(obj) {
@@ -213,5 +219,13 @@ export class NotificationsComponent implements OnInit {
       });
     }
   }
+
+  checkInit() {
+    if (DATA_SHARED.count == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } 
 
 }
