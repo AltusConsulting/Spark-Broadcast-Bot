@@ -125,6 +125,7 @@ Once its added, you can begin by saying `help` to the bot to see all the command
 Here is a summary of the commands, their shorthand and what each does:
 
 | Command | Shorthand | Action |
+|---|---|---|
 | `show topics` | N/A | show available topics |
 | `subscribe` | `sub` | subscribe to a topic | 
 | `unsubscribe` | `unsub` | unsubscribe from a topic | 
