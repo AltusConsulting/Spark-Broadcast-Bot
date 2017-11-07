@@ -22,7 +22,7 @@ export class TopicsComponent implements OnInit {
   ) { 
     this.title = 'New topic';
     this.placeholder = 'Enter a new topic';
-    this.btn_send = 'Send';
+    this.btn_send = 'Add';
     this.btn_cancel = 'Cancel';
     this.topic_data = new TopicsModel('','');
 

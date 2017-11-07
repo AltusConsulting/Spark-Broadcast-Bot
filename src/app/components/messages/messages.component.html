@@ -16,14 +16,11 @@
                 {{topic}}
               </div>
               <ul class="list-group">
-                <li *ngFor="let obj of filtered_messages" class="list-group-item">
-                  <p class="card-title">
-                    <small class="text-muted">{{obj.time | date:'medium'}}</small>
-                  </p>
-                  <div>{{obj.message.text}}</div>
-                  <!-- <span class="col text-right">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                  </span> -->
+                <li *ngFor="let obj of filtered_messages" class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="card-title justify-content-between">
+                      <small class="text-muted">{{obj.time | date:'medium'}}</small>
+                  </div>
+                  <p class="mb-1">{{obj.message.text}}</p>
                 </li>
               </ul>
             </div>

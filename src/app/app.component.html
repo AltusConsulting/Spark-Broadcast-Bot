@@ -3,17 +3,22 @@
     aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-  <a class="navbar-brand" [routerLink]="['/notifications']"><i class="fa fa-home" aria-hidden="true"></i>{{title}}</a>
+  <a class="navbar-brand" [routerLink]="['/notifications']">{{title}}</a>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto" *ngIf="showHide()">
     </ul>
     <div class="navbar-nav" *ngIf="showHide()">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user" aria-hidden="true"></i>User
+        <a class="nav-link" [routerLink]="['/splash']" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-bar-chart" aria-hidden="true"></i>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" [routerLink]="['/login']" (click)="logoutClick($event)">{{logout}}</a>
         </div>
       </li>
@@ -37,16 +42,18 @@
         <div class="row">
             <div class="col-md-3 bg-faded sidebar">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="filter_topic">
-                  <span class="input-group-btn">
-                    <button class="btn btn-info" type="button" [routerLink]="['/topics']">+</button>
-                  </span>
+                  <button id="buttontopic" class="btn btn-info" type="button" [routerLink]="['/topics']">Add topic</button>
+                  <button id="buttontopic" class="btn btn-info" type="button" [routerLink]="['/notifications']">New message</button>
+                </div>
+                <div class="searchicon">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="filter_topic">
                 </div>
                 <ul class="list-group">
                     <li *ngFor="let obj of topics | filter : filter_topic" class="list-group-item bg-faded" style="border: none">
-                        <i class="fa fa-comment-o" aria-hidden="true" [ngStyle]="{'background': obj.color, 'padding':'10px', 'border-radius':'50%', 'color': '#fff'}"></i>
+                        <i class="fa fa-comment-o" aria-hidden="true" [ngStyle]="{'background': obj.color, 'padding':'7px', 'border-radius':'50%', 'color': '#fff'}"></i>
                         <a class="col text-left nav-link text-muted" [routerLink]="['/messages']" [queryParams]="{id: obj.id, desc: obj.text, color: obj.color}">{{obj.text}}</a>
-                        <app-delete-topics [obj]="obj" [topics]="topics"></app-delete-topics>
+                        <app-delete-topics class="deleteicon" [obj]="obj" [topics]="topics"></app-delete-topics>
                     </li>
                   </ul>
             </div>
