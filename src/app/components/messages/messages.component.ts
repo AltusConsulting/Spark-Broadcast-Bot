@@ -25,7 +25,7 @@ export class MessagesComponent implements OnInit {
   ) { 
     this.total_messages = 0;
     this.message = 'No results found';
-    this.participants_header = 'Participants';
+    this.participants_header = 'Subscribers';
   }
 
   ngOnInit() {

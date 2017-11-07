@@ -1,20 +1,30 @@
-<div class="col text-left" style="margin: 14px">
-    <button type="submit" class="btn btn-info" [routerLink]="['/notifications']"><i class="fa fa-arrow-left" aria-hidden="true"></i>{{btnback}}</button>
-</div>
 
 <div *ngIf="topics_content == 0">
-    <div class="col text-center">
-        <h3>
-            <small class="text-muted" style="margin-bottom: 0px;">{{notfound}}</small>
-        </h3>
-        <br>
+    <div class="row">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-link" [routerLink]="['/notifications']"><i class="fa fa-angle-left" aria-hidden="true"></i>{{btnback}}</button>
+        </div>
+        <div class="col-md-9">
+            <h3>
+                <small class="text-muted col text-center" style="margin-left: 145px;">{{notfound}}</small>
+            </h3>
+        </div>
     </div>
+    <br>
 </div>
 
-<div *ngIf="messages" class="col text-center">
-    <h3>
-        <small class="text-muted" style="margin-bottom: 0px;">{{statistics}}</small>
-    </h3>
+<div *ngIf="messages">
+    <div class="row">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-link" [routerLink]="['/notifications']">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>{{btnback}}</button>
+        </div>
+        <div class="col-md-9">
+            <h3>
+                <small class="text-muted col text-center" style="margin-left: 145px;">{{statistics}}</small>
+            </h3>
+        </div>
+    </div>
     <br>
 </div>
 

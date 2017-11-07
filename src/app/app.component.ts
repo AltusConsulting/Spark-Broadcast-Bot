@@ -38,7 +38,7 @@ export class AppComponent {
     private _notification: NotificationsService
   ) {
       // Name of the application
-    this.title = ' Spark Broadcast Bot Admin';
+    this.title = ' Spark Broadcast Bot';
     this.copyright = '© ' + this.getDate();
     this.notification_data = new NotificationsModel('','');
     this.logout = ' Log out';

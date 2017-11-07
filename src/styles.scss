@@ -4,9 +4,14 @@
 $fa-font-path: "../node_modules/font-awesome/fonts";
 @import "../node_modules/font-awesome/scss/font-awesome.scss";
 
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,600');
+
 
 body {
-    padding-top: $padding_body;
+    //padding-top: $padding_body;
+    font-family: "Raleway", sans-serif;
+    padding-top: 8px;
 }
 
 .starter-template {
@@ -45,6 +50,27 @@ body {
   display:inline-block;
 }
 
+#buttontopic {
+  width: 190px;
+  margin-right: 1px;
+}
+
+.searchicon {
+  position: relative;
+}
+
+.searchicon .fa-search{
+  top: 11px;
+  right: 26px;
+  position: absolute;
+}
+
+.deleteicon {
+  top: 19px;
+  right: 13px;
+  position: absolute;
+}
+
 #sidebar-right {
   height:100%;
   width: 286px;
@@ -52,6 +78,8 @@ body {
   right:0;
   overflow-x: hidden;
   overflow-y: auto;
+  border-left: 2px solid rgba(0, 0, 0, 0.125); 
+  background-color: white;
 }
 
 //css nav sidebar
@@ -67,14 +95,13 @@ h1 {
   
   .sidebar {
     position: fixed;
-    top: 51px;
+    top: 35px;
     bottom: 0;
     left: 0;
     z-index: 1000;
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    border-right: 1px solid #eee;
   }
   
   /* Sidebar navigation */
@@ -98,3 +125,84 @@ h1 {
   .sidebar .nav-link {
     border-radius: 0;
   }
+
+  /* estilos extra */
+.btn-outline-info {
+  font-family: Raleway;
+}
+
+.input-group .form-control:not(:last-child){
+  font-family: Raleway;
+  padding: 10px;
+}
+
+.navbar-light .navbar-brand{
+  font-weight: bolder;
+  color: #636c72;
+  margin-left: 5px;
+}
+
+.fa{
+  font-size: 20px;
+  color: dimgray;
+}
+
+
+.btn-default {
+  background-color: transparent;
+  color: gray;
+  font-size: 18px;
+}
+
+.btn-default :hover{
+  color: #56d1ee;
+}
+
+.ui-select-multiple[_ngcontent-c3] input.ui-select-search[_ngcontent-c3] {
+  font-family: Raleway;
+  padding-left: 7px;
+}
+
+.btn-info{
+  background-color: #56d1ee;
+}
+
+.btn{
+  font-family: Raleway;
+}
+
+.form-control {
+  font-family: Raleway;
+}
+.card{
+  border: 0px;
+}
+
+.card-title{
+  font-family: sans-serif;
+}
+
+.card-header{
+  height: 65px;
+  background-color: transparent;
+  font-weight: bolder;
+}
+
+.list-group-item{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  border-left: 0px;
+  border-right: 0px;
+}
+
+.starter-template {
+  padding: 109px 0px 40px 0;
+}
+
+.btn-link {
+  color: #00d4f3;
+}
+
+.btn-link:hover {
+  color: #00d4f3;
+}
