@@ -1,0 +1,32 @@
+<div class="col text-center">
+  <h2>
+    <small class="text-muted" style="margin-bottom: 0px; margin-left: 15px;">Bot Admins</small>
+  </h2>
+</div>
+<div><br></div>
+<div><br></div>
+<div class="row">
+  <div class="col-sm2">
+      <app-add-admin-modal></app-add-admin-modal>
+  </div>
+</div>
+<div><br></div>
+<div><br></div>
+  <div class="row">
+    <div class="col-md">
+      <table class="table table-striped table-bordered table-lg">
+        <thead>
+          <tr>
+            <th style="width: 326px;">Emails</th>
+            <th style="width: 326px;">Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let obj of adminData">
+            <td>{{obj.email}}</td>
+            <td><app-delete-admin-modal [obj]="obj"></app-delete-admin-modal></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
