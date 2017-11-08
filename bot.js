@@ -14,7 +14,7 @@ var Broadcast = require('./lib/broadcast.js');
 
 // Storage
 var redisConfig = {
-    "hash_methods": ['subscriptions', 'topics', 'counter'],
+    "hash_methods": ['subscriptions', 'topics', 'counter', 'admins'],
     "sorted_set_methods": ['messages'],
     "url": process.env.REDIS_URL,
     "namespace": "broadcast"
@@ -109,6 +109,11 @@ var authController = Broadcast.auth({
     token_secret: process.env.SECRET,
     api_base_url: api_base_url
 });
+var adminController = Broadcast.admins({
+    storage: controller.storage,
+    token_secret: process.env.SECRET,
+    api_base_url: api_base_url
+});
 
 
 // Start Bot API
@@ -145,6 +150,10 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 
     authController.createAuthEndpoints(webserver, bot, function() {
         console.log("Broadcast Bot: Auth endpoints set up!");
+    });
+
+    adminController.createAdminEndpoints(webserver, bot, function() {
+        console.log("Broadcast Bot: Admin endpoints set up!");
     });
 
     webserver.get('/*', function(req, res) {
