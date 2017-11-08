@@ -60,6 +60,7 @@ sparkLogin() {
                     localStorage.setItem('notifications',btoa('R'));
                     localStorage.setItem('topics',btoa('R'));
                     localStorage.setItem('splash',btoa('R'));
+                    localStorage.setItem('management', btoa('R'));
                     return true;
                 }
             },
