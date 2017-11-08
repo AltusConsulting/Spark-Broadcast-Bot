@@ -27,7 +27,9 @@ export class AppComponent {
   public user: string;
   public static loadTopics;
   public filter_topic: string;
+  public management: string;
   public logout: string;
+
 
 
 
@@ -41,6 +43,7 @@ export class AppComponent {
     this.title = ' Spark Broadcast Bot';
     this.copyright = '© ' + this.getDate();
     this.notification_data = new NotificationsModel('','');
+    this.management = 'Management'
     this.logout = ' Log out';
   }
 
