@@ -33,7 +33,7 @@ Inspired by [BotKit samples for Cisco Spark](https://github.com/CiscoDevNet/botk
 4. Go back to Heroku and scroll down until you reach the **Config Variables** section. Fill them according to the following instructions:
     - **PUBLIC_URL**: Write `https://{app-name}.herokuapp.com` where `{app-name}` is the name of your Heroku app.
     - **SPARK_TOKEN**: The token you got when you created your Spark bot.
-    - **ALLOWED_DOMAIN**: The domain you want to restrict the bot to, in the format `@mydomain.com`.
+    - **ALLOWED_DOMAINS**: A single domain or a commma-separated list of domains you want to restrict the bot to, in the format `mydomain.com` or `mydomain1.com,mydomain2.com`.
     - **ALLOWED_ADMIN**: The Spark username of the person authorized to manage the web application.
     - **SECRET**: Any secret phrase. This is used to validate both Spark's messages to the bot and to generate the authentication tokens used by the app backend.
     - **CLIENT_ID**: The client id you got when creating the integration.

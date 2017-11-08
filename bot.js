@@ -56,7 +56,7 @@ var controller = Botkit.sparkbot({
     secret: process.env.SECRET, // this is a RECOMMENDED security setting that checks of incoming payloads originate from Cisco Spark
     webhook_name: process.env.WEBHOOK_NAME || ('built with BotKit (' + env + ')'),
     storage: storage,
-    limit_to_domain: process.env.ALLOWED_DOMAIN
+    limit_to_domain: process.env.ALLOWED_DOMAINS.split(",")
 });
 
 var bot = controller.spawn({});

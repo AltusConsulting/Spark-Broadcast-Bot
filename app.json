@@ -10,8 +10,8 @@
         "SPARK_TOKEN": {
             "description": "The API access token of your Cisco Spark bot."
         },
-        "ALLOWED_DOMAIN": {
-            "description": "The domain from which messages can be received by the bot."
+        "ALLOWED_DOMAINS": {
+            "description": "A single domain or a comma-separated list of domains from which messages can be received by the bot, in format domain.com or domain1.com,domain2.com"
         },
         "ALLOWED_ADMIN": {
             "description": "The Spark email address of the administrator."
