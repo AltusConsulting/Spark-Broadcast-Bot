@@ -51,8 +51,10 @@ body {
 }
 
 #buttontopic {
-  width: 190px;
+  width: 50%;
   margin-right: 1px;
+  text-align: left;
+  padding-left: 20px;
 }
 
 .searchicon {
@@ -69,6 +71,36 @@ body {
   top: 19px;
   right: 13px;
   position: absolute;
+}
+
+.center-bar {
+  position: fixed;
+  bottom: 0;
+  width: 56.8%;
+  height: 32%;
+  background-color: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.center-btn-bar {
+  position: fixed;
+  bottom: 0;
+  width: 57%;
+  height: 55px;
+  background-color: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.center-bar-listgroup {
+  position: fixed;
+  width: 60%;
+  height: 48%;
+  background-color: white;
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
+  overflow-y: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 #sidebar-right {
@@ -144,7 +176,11 @@ h1 {
 
 .fa{
   font-size: 20px;
-  color: dimgray;
+  color: #7f7f7f;
+}
+
+.row{
+  margin-top: -27px;
 }
 
 
@@ -158,6 +194,10 @@ h1 {
   color: #56d1ee;
 }
 
+button, html [type="button"], [type="reset"], [type="submit"]{
+  -webkit-appearance: none;
+}
+
 .ui-select-multiple[_ngcontent-c3] input.ui-select-search[_ngcontent-c3] {
   font-family: Raleway;
   padding-left: 7px;
@@ -165,15 +205,21 @@ h1 {
 
 .btn-info{
   background-color: #56d1ee;
+  border-radius: 0px;
 }
 
 .btn{
   font-family: Raleway;
+  border-radius: 0px;
 }
 
 .form-control {
   font-family: Raleway;
+  border-radius: 0px;
+  margin-top: 10px;
+  padding: 10px 20px;
 }
+
 .card{
   border: 0px;
 }
@@ -206,3 +252,39 @@ h1 {
 .btn-link:hover {
   color: #00d4f3;
 }
+
+.btn-link:hover {
+  color: #00d4f3;
+}
+
+.col-md-9{
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+
+.col{
+  padding-right: 0px;
+  // padding-left: 0px;
+}
+
+.topics-alts {
+  padding: 0px;
+}
+
+.ui-select-multiple[_ngcontent-c3] input.ui-select-search[_ngcontent-c3] {
+  margin-left: 20px;
+  margin-top: 0px;
+}
+.searchicon .fa-search {
+  right: 15px;
+}
+
+.starter-template{
+  margin-top: 2%;
+}
+
+.list-group-item-action:hover {
+  background-color: transparent;
+}
+

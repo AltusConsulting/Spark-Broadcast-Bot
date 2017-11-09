@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { TopicsModel } from '../../models/topics/topics';
 import { TopicsService } from '../../shared/services/topics/topics.service';
 import { AppComponent } from '../../app.component';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-topics',
@@ -18,14 +19,16 @@ export class TopicsComponent implements OnInit {
 
   constructor(
     private _topics: TopicsService,
-    private app_comp: AppComponent
+    private app_comp: AppComponent,
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef
   ) { 
     this.title = 'New topic';
     this.placeholder = 'Enter a new topic';
     this.btn_send = 'Add';
     this.btn_cancel = 'Cancel';
     this.topic_data = new TopicsModel('','');
-
+    this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
@@ -38,6 +41,8 @@ export class TopicsComponent implements OnInit {
         if (result.status == 200) {
           this.app_comp.loadTopics();
           this.clearModel();
+          let messg = 'Added topic successfully';
+          this.showMessage(messg);
         }
       },
       error => {
@@ -59,6 +64,11 @@ export class TopicsComponent implements OnInit {
   clearModel() {
     this.topic_data.id = '';
     this.topic_data.description = '';
+  }
+
+  showMessage(mssg) {
+    let obj = {toastLife: '3000'};
+    this.toastr.info(mssg, 'Info!', obj);
   }
 
 }

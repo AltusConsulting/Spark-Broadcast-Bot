@@ -4,7 +4,7 @@
   </h3>
   <br>
 </div>
-<ng-select (removed)="removed($event)" [disabled]="disabled" [multiple]="true" [items]="topics" placeholder="{{placeholder}}"
+<ng-select (removed)="removed($event)" [disabled]="disabled" [items]="topics" placeholder="{{placeholder}}"
   (selected)="selected($event)"></ng-select>
 <br>
 <md-editor name="Content" [(ngModel)]="notification_data.message" [height]="'350px'" [mode]="mode" [options]="options" required
