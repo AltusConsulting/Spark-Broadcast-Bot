@@ -14,7 +14,7 @@
             <i class="fa fa-comment-o" aria-hidden="true" [ngStyle]="{'background': color, 'padding':'10px', 'border-radius':'50%', 'color': '#fff'}"></i>
             {{topic}}
           </div>
-          <div class="center-bar-listgroup">
+          <div #scrolly class="center-bar-listgroup">
               <div class="card">
                   <ul class="list-group">
                     <li *ngFor="let obj of filtered_messages | sortgrid: 'time'" class="list-group-item list-group-item-action flex-column align-items-start">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessagesService } from '../../shared/services/messages/messages.service';
 import { NotificationsService } from '../../shared/services/notifications/notifications.service';
@@ -25,6 +25,7 @@ export class MessagesComponent implements OnInit {
   public text_mssg_id: string;
   public options_editor = {};
   public btnsend: string;
+  @ViewChild('scrolly') private myScrollContainer: ElementRef;
 
   constructor(
     private _route: ActivatedRoute,
@@ -48,6 +49,12 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit() {
     this.getQueryParameters();
+  }
+
+  private scrollToBottom(): void {
+      try {
+          this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+      } catch(err) { }
   }
 
   getQueryParameters() {
@@ -97,7 +104,7 @@ export class MessagesComponent implements OnInit {
         if (result.status == 200) {
           this.text_mssg = '';
           this.showMessage();
-          this.refreshMessages();
+          this.loadData();
         }
       },
       error => {
@@ -112,22 +119,32 @@ export class MessagesComponent implements OnInit {
     }
   }
 
-  refreshMessages() {
+  showMessage() {
+    let mssg = 'Message sent successfully';
+    let obj = {toastLife: '3000'};
+    this.toastr.info(mssg, 'Info!', obj);
+  }
+
+  loadData() {
     this._route.queryParams.subscribe(
       result => {
         this.qry_string = result.id;
-        this.getMessages(this.qry_string);
+        this._messages.getMessages(this.qry_string).subscribe(
+          result => {
+            this.filtered_messages = result;
+            setTimeout(() => {
+              this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+            }, 1000);
+          },
+          error => {
+            console.log(error);
+          }
+        );
       },
       error => {
         console.log(error);
       }
     );
-  }
-
-  showMessage() {
-    let mssg = 'Message sent successfully';
-    let obj = {toastLife: '3000'};
-    this.toastr.info(mssg, 'Info!', obj);
   }
 
 }
