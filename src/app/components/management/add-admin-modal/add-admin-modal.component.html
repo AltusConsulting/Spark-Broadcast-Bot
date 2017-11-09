@@ -1,0 +1,27 @@
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+      <form #adminForm="ngForm" role="form" name="adminForm" novalidate>
+          <div class="form-group">
+              <label for="userEmail">Email: </label>
+              <input type="text" class="form-control" #userEmail="ngModel" name="userEmail" [(ngModel)]="admin.email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [ngClass]="{invalid : userEmail.touched && !userEmail.valid}" required email>
+              <div *ngIf="userEmail.errors && (userEmail.dirty || userEmail.touched)" class="alert alert-danger">
+                <div [hidden]="!userEmail.errors.required">
+                  Email is required
+                </div>
+                <div [hidden]="userEmail.errors.required">
+                  Email is invalid
+                </div>
+              </div>
+          </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-info" (click)="addAdmin(adminForm)" [disabled]="!adminForm.form.valid">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+  </div>
+</ng-template>
+
+<button style="margin-left: 15px;" type="button" class="btn btn-info" (click)="openModal(template)">{{botton_name}}</button>

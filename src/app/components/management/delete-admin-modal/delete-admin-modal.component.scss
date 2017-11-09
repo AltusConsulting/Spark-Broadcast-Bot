@@ -1,0 +1,17 @@
+.btn-outline-danger{
+    border-color: transparent;
+}
+
+.btn-outline-danger:hover{
+    background-color: transparent;
+    border-color: #b73939;
+}
+
+.btn-outline-danger:active, .btn-outline-danger.active, .show > .btn-outline-danger.dropdown-toggle{
+    background-color: transparent;
+    border-color: #b73939;
+}
+
+.btn-outline-danger:focus, .btn-outline-danger.focus{
+    box-shadow: #b73939;
+}

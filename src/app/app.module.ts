@@ -30,7 +30,11 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { TopicsComponent } from './components/topics/topics.component';
 import { DeleteTopicsComponent } from './components/delete-topics/delete-topics.component';
 import { FilterPipe } from './shared/pipes/filter';
+import { SortGridPipe } from './shared/pipes/sort';
 import { SplashComponent } from './components/splash/splash.component';
+import { ManagementComponent } from './components/management/management.component';
+import { AddAdminModalComponent } from './components/management/add-admin-modal/add-admin-modal.component';
+import { DeleteAdminModalComponent } from './components/management/delete-admin-modal/delete-admin-modal.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { SplashComponent } from './components/splash/splash.component';
     TopicsComponent,
     DeleteTopicsComponent,
     FilterPipe,
+    SortGridPipe,
     SplashComponent,
+    ManagementComponent,
+    AddAdminModalComponent,
+    DeleteAdminModalComponent,
   ],
   imports: [
     BrowserModule,

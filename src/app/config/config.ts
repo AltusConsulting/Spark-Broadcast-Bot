@@ -3,5 +3,5 @@ export var GLOBAL = {
         token_prefix: 'bot',
         spark_url: '',
         bot_url: '',
-        components: ['messages', 'topics', 'home', 'notifications', 'splash']
+        components: ['messages', 'topics', 'home', 'notifications', 'splash', 'management']
     };

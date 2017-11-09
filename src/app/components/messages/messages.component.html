@@ -9,20 +9,31 @@
 
 <div *ngIf="total_messages > 0">
   <div class="row">
-      <div class="col-md-9">
-          <div class="card">
-              <div class="card-header">
-                <i class="fa fa-comment-o" aria-hidden="true" [ngStyle]="{'background': color, 'padding':'10px', 'border-radius':'50%', 'color': '#fff'}"></i>
-                {{topic}}
+      <div class="col-md-9" style="padding-left:0px; padding-right:0px">
+          <div class="card-header" style="border: none">
+            <i class="fa fa-comment-o" aria-hidden="true" [ngStyle]="{'background': color, 'padding':'10px', 'border-radius':'50%', 'color': '#fff'}"></i>
+            {{topic}}
+          </div>
+          <div #scrolly class="center-bar-listgroup">
+              <div class="card">
+                  <ul class="list-group">
+                    <li *ngFor="let obj of filtered_messages | sortgrid: 'time'" class="list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="card-title justify-content-between">
+                          <small class="text-muted">{{obj.time | date:'medium'}}</small>
+                      </div>
+                      <p class="mb-1">{{obj.message.text}}</p>
+                    </li>
+                  </ul>
+                </div>
+          </div>
+            <div class="center-bar">
+              <md-editor name="Content" [(ngModel)]="text_mssg" [height]="'180px'" [mode]="mode" [options]="options_editor" required
+              maxlength="10000"></md-editor>
+            </div>
+            <div class="center-btn-bar">
+              <div class="col text-right">
+                <button style="margin-top: 1%; margin-right: 2%" type="submit" class="btn btn-info" (click)="send()" [disabled]="!dataCheck()">{{btnsend}}</button>
               </div>
-              <ul class="list-group">
-                <li *ngFor="let obj of filtered_messages" class="list-group-item list-group-item-action flex-column align-items-start">
-                  <div class="card-title justify-content-between">
-                      <small class="text-muted">{{obj.time | date:'medium'}}</small>
-                  </div>
-                  <p class="mb-1">{{obj.message.text}}</p>
-                </li>
-              </ul>
             </div>
       </div>
       <div class="col-md-3">

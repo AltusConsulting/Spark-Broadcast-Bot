@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { NotificationsModel } from '../../models/notifications/notifications';
 import { NotificationsService } from '../../shared/services/notifications/notifications.service';
 import { DATA_SHARED } from '../../shared/services/data';
 import { StatsService } from '../../shared/services/stats/stats.service';
 import { AppComponent } from '../../app.component';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as _ from "lodash";
 
 @Component({
@@ -30,7 +31,9 @@ export class NotificationsComponent implements OnInit {
   constructor(
     private _notification: NotificationsService,
     private _stats: StatsService,
-    private app_comp: AppComponent
+    private app_comp: AppComponent,
+    public toastr: ToastsManager, 
+    vcr: ViewContainerRef
   ) { 
     this.notifications = 'Notifications';
     this.placeholder = 'Select a topic';
@@ -41,6 +44,7 @@ export class NotificationsComponent implements OnInit {
     this.new_massage = 'New message';
     this.btnsend = 'Send';
     this.btncancel = 'Cancel';
+    this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
@@ -113,24 +117,22 @@ export class NotificationsComponent implements OnInit {
     DATA_SHARED.messg = this.notification_data.message;
     this.message_copy = this.notification_data.message;
     this.shortMessage();
-    _.forEach(this.selected_data, (o) => {
-      this.notification_data.topic = o;
-      this._notification.sendNotifications(this.notification_data).subscribe(
-        result => {
-          if (result.status == 200) {
-            //this.cancel();
-          }
-        },
-        error => {
-          console.log(error);
+    this.notification_data.topic = this.selected_data[0];
+    this._notification.sendNotifications(this.notification_data).subscribe(
+      result => {
+        if (result.status == 200) {
+          this.cancel();
+          this.showCustom();
         }
-      );
-    });
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   cancel() {
     this.notification_data.message = "";
-    //this.selected_data = [];
   }
 
   deleteTopic(obj) {
@@ -226,6 +228,18 @@ export class NotificationsComponent implements OnInit {
     } else {
       return false;
     }
-  } 
+  }
+  
+  showCustom() {
+    // let obj = {
+    //   dismiss: 'click',
+    //   enableHTML: true,
+    //   showCloseButton: true
+    // };
+    // this.toastr.info('<span>'+mssg+'</span><br/><a style="border:1px solid white;padding: 5px;margin: 5px" routerLink="[\'/splash\']">Statistics</a>', 'Info!', obj);
+    let mssg = 'Message sent successfully';
+    let obj = {toastLife: '3000'};
+    this.toastr.info(mssg, 'Info!', obj);
+  }
 
 }

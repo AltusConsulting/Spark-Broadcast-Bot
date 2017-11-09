@@ -27,7 +27,9 @@ export class AppComponent {
   public user: string;
   public static loadTopics;
   public filter_topic: string;
+  public management: string;
   public logout: string;
+
 
 
 
@@ -41,6 +43,7 @@ export class AppComponent {
     this.title = ' Spark Broadcast Bot';
     this.copyright = '© ' + this.getDate();
     this.notification_data = new NotificationsModel('','');
+    this.management = 'Management'
     this.logout = ' Log out';
   }
 
@@ -62,30 +65,66 @@ export class AppComponent {
   ngOnInit() {
   }
 
-  getTopics() {
-    this._notification.getTopics().subscribe(
-      result => {
-        let data = [];
-        _.forEach(result, (obj) => {
-          data.push({
-            id: obj.id,
-            text: obj.description
+  getTopics(optcolor?: string, name?: string) {
+    if (this.topics !== undefined && optcolor !== undefined && name !== undefined) {
+      return;
+    } else if (this.topics !== undefined && name === undefined) {
+      return;
+    } else if (name === 'Add') {
+      this._notification.getTopics().subscribe(
+        result => {
+          let data = [];
+          _.forEach(result, (obj) => {
+            data.push({
+              id: obj.id,
+              text: obj.description
+            });
           });
-        });
-        this.topics = data;
-        this.topics = _.map(this.topics, (o) => {
-          o.color = this.getColor();
-          return o;
-        });
-      },
-      error => {
-        console.log(error);
-      }
-    );
+          this.topics = data;
+          this.topics = _.map(this.topics, (o) => {
+            if (optcolor !== undefined && o.id === name) {
+              console.log('Coloring here');
+              o.color = optcolor
+              return o
+            }
+            o.color = this.getColor();
+            return o;
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      this._notification.getTopics().subscribe(
+        result => {
+          let data = [];
+          _.forEach(result, (obj) => {
+            data.push({
+              id: obj.id,
+              text: obj.description
+            });
+          });
+          this.topics = data;
+          this.topics = _.map(this.topics, (o) => {
+            if (optcolor !== undefined && o.id === name) {
+              console.log('Coloring here');
+              o.color = optcolor
+              return o
+            }
+            o.color = this.getColor();
+            return o;
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
-  loadTopics() {
-    this.getTopics();
+  loadTopics(optcolor?: string, name?: string) {
+    this.getTopics(optcolor, name);
   }
 
   getColor() {

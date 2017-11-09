@@ -9,9 +9,14 @@
     <ul class="navbar-nav mr-auto" *ngIf="showHide()">
     </ul>
     <div class="navbar-nav" *ngIf="showHide()">
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link" [routerLink]="['/splash']" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        </a>
+      </li> -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" [routerLink]="['/management']" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-cog" aria-hidden="true"></i>
         </a>
       </li>
       <li class="nav-item dropdown">
