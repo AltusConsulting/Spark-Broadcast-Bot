@@ -22,16 +22,17 @@ export class TopicsComponent implements OnInit {
     private app_comp: AppComponent,
     public toastr: ToastsManager, 
     vcr: ViewContainerRef
-  ) { 
+  ) {
     this.title = 'New topic';
     this.placeholder = 'Enter a new topic';
     this.btn_send = 'Add';
     this.btn_cancel = 'Cancel';
-    this.topic_data = new TopicsModel('','');
+    this.topic_data = new TopicsModel('', '');
     this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
+    this.app_comp.loadTopics()
   }
 
   send() {
@@ -39,7 +40,7 @@ export class TopicsComponent implements OnInit {
     this._topics.addTopic(this.topic_data).subscribe(
       result => {
         if (result.status == 200) {
-          this.app_comp.loadTopics();
+          this.app_comp.loadTopics(undefined, 'Add');
           this.clearModel();
           let messg = 'Added topic successfully';
           this.showMessage(messg);
@@ -54,7 +55,7 @@ export class TopicsComponent implements OnInit {
   cancel() {
     this.clearModel();
   }
-  
+
   dataCheck() {
     if (this.topic_data.id) {
       return true;

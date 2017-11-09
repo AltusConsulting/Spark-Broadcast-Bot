@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MessagesService } from '../../shared/services/messages/messages.service';
 import { NotificationsService } from '../../shared/services/notifications/notifications.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { AppComponent } from '../../app.component'; 
 import * as _ from "lodash";
 
 @Component({
@@ -29,6 +30,7 @@ export class MessagesComponent implements OnInit {
     private _route: ActivatedRoute,
     private _messages: MessagesService,
     private _notification: NotificationsService,
+    private app_comp: AppComponent,
     public toastr: ToastsManager, 
     vcr: ViewContainerRef
   ) { 
@@ -56,6 +58,7 @@ export class MessagesComponent implements OnInit {
         this.topic = result.desc;
         this.getMessages(this.qry_string);
         this.getParticipants(this.qry_string);
+        this.app_comp.loadTopics(this.color, result.id);
       }
     );
   }

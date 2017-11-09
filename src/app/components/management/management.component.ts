@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ManagementService } from '../../shared/services/management/management.service';
 import { Admins } from '../../models/admins/admins';
+import { AppComponent } from '../../app.component';
 import * as _ from 'lodash';
 
 @Component({
@@ -13,7 +14,8 @@ export class ManagementComponent implements OnInit {
   public adminData: Array<any>;
 
   constructor(
-    private _mngt: ManagementService
+    private _mngt: ManagementService,
+    private app_comp: AppComponent
   ) { }
 
   ngOnInit() {
@@ -22,6 +24,7 @@ export class ManagementComponent implements OnInit {
 
   load() {
     this.getAdmins();
+    this.app_comp.loadTopics();
   }
 
   getAdmins() {
