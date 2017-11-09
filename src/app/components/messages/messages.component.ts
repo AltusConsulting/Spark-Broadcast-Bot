@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessagesService } from '../../shared/services/messages/messages.service';
-import * as _ from "lodash";
+import { AppComponent } from '../../app.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-messages',
@@ -21,8 +22,9 @@ export class MessagesComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _messages: MessagesService
-  ) { 
+    private _messages: MessagesService,
+    private app_comp: AppComponent
+  ) {
     this.total_messages = 0;
     this.message = 'No results found';
     this.participants_header = 'Subscribers';
@@ -40,6 +42,7 @@ export class MessagesComponent implements OnInit {
         this.topic = result.desc;
         this.getMessages(this.qry_string);
         this.getParticipants(this.qry_string);
+        this.app_comp.loadTopics(this.color, result.id);
       }
     );
   }

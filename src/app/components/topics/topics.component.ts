@@ -19,16 +19,17 @@ export class TopicsComponent implements OnInit {
   constructor(
     private _topics: TopicsService,
     private app_comp: AppComponent
-  ) { 
+  ) {
     this.title = 'New topic';
     this.placeholder = 'Enter a new topic';
     this.btn_send = 'Add';
     this.btn_cancel = 'Cancel';
-    this.topic_data = new TopicsModel('','');
+    this.topic_data = new TopicsModel('', '');
 
   }
 
   ngOnInit() {
+    this.app_comp.loadTopics()
   }
 
   send() {
@@ -36,7 +37,7 @@ export class TopicsComponent implements OnInit {
     this._topics.addTopic(this.topic_data).subscribe(
       result => {
         if (result.status == 200) {
-          this.app_comp.loadTopics();
+          this.app_comp.loadTopics(undefined, 'Add');
           this.clearModel();
         }
       },
@@ -49,7 +50,7 @@ export class TopicsComponent implements OnInit {
   cancel() {
     this.clearModel();
   }
-  
+
   dataCheck() {
     if (this.topic_data.id) {
       return true;

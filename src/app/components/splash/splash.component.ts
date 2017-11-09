@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DATA_SHARED } from '../../shared/services/data';
 import { StatsService } from '../../shared/services/stats/stats.service';
+import { AppComponent } from '../../app.component';
 import * as _ from "lodash";
 
 @Component({
@@ -31,8 +32,9 @@ export class SplashComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _stats: StatsService
-  ) { 
+    private _stats: StatsService,
+    private app_comp: AppComponent
+  ) {
     this.splash = false;
     this.text_people = "people";
     this.msg = 'Message sent successfully';
@@ -58,6 +60,7 @@ export class SplashComponent implements OnInit {
     this.topics_content = DATA_SHARED.topics;
     this.count = this.count + this.topics_content.length;
     this.topics_count = String(this.count);
+    this.app_comp.loadTopics()
   }
 
   getTotalSubscribersbyTopic() {
