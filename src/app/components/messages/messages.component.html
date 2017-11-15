@@ -26,14 +26,12 @@
                   </ul>
                 </div>
           </div>
-            <div class="center-bar">
+            <div class="editor-bar">
               <md-editor name="Content" [(ngModel)]="text_mssg" [height]="'180px'" [mode]="mode" [options]="options_editor" required
               maxlength="10000"></md-editor>
-            </div>
-            <div class="center-btn-bar">
               <div class="col text-right">
-                <button style="margin-top: 1%; margin-right: 2%" type="submit" class="btn btn-info" (click)="send()" [disabled]="!dataCheck()">{{btnsend}}</button>
-              </div>
+                  <button style="margin-top: 1%; margin-right: 2%" type="submit" class="btn btn-info" (click)="send()" [disabled]="!dataCheck()">{{btnsend}}</button>
+                </div>
             </div>
       </div>
       <div class="col-md-3">
