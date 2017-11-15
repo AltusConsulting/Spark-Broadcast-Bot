@@ -73,44 +73,25 @@ body {
   position: absolute;
 }
 
-.center-bar {
-  position: fixed;
+.editor-bar {
+  position: sticky;
   bottom: 0;
-  width: 56.8%;
-  height: 32%;
   background-color: white;
-  border-right: 1px solid rgba(0, 0, 0, 0.125);
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.center-btn-bar {
-  position: fixed;
-  bottom: 0;
-  width: 57%;
-  height: 55px;
-  background-color: white;
-  border-right: 1px solid rgba(0, 0, 0, 0.125);
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .center-bar-listgroup {
-  position: fixed;
-  width: 60%;
-  height: 48%;
+  position: sticky;
   background-color: white;
-  border-right: 1px solid rgba(0, 0, 0, 0.125);
   overflow-y: auto;
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 #sidebar-right {
   height:100%;
-  width: 286px;
-  position:fixed;
-  right:0;
+  position: fixed;
+  float: right;
   overflow-x: hidden;
   overflow-y: auto;
-  border-left: 2px solid rgba(0, 0, 0, 0.125); 
+  border-left: 1px solid rgba(0, 0, 0, 0.125); 
   background-color: white;
 }
 
