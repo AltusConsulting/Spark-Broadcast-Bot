@@ -30,26 +30,25 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this._route.queryParams.subscribe(
       result => {
-        _.forEach(result, (obj) => {
-          if (obj.length > 0) {
-            this._loginService.getToken(obj).subscribe(
-              result => {
-                if (result) {
-                  this._router.navigate(['/notifications']);
-                } else {
-                  console.log('result:',result);
-                }
-              },
-              error => {
-                let mssg = 'User does not have permission to access the application!';
-                this.showMessage(mssg);
-                this._router.navigate(['/']);
+        console.log(result.code)
+        if (result.code !== undefined) {
+          this._loginService.getToken(result.code).subscribe(
+            res => {
+              if (res) {
+                this._router.navigate(['/notifications']);
+              } else {
+                console.log('result:', res);
               }
-            );
-          } else {
-            console.log("Empty url params");
-          }
-        });
+            },
+            error => {
+              let mssg = 'User does not have permission to access the application!';
+              this.showMessage(mssg);
+              this._router.navigate(['/']);
+            }
+          );
+        } else {
+          console.log("Empty url params");
+        }
       }
     );
   }
