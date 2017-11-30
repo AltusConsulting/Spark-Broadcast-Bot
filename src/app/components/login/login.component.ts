@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { LoginService } from '../../shared/services/login/login.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { AppComponent } from '../../app.component'; 
 import * as _ from 'lodash';
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _loginService: LoginService,
+    private app_comp: AppComponent,
     public toastr: ToastsManager, 
     vcr: ViewContainerRef
 
@@ -68,6 +70,10 @@ export class LoginComponent implements OnInit {
   showMessage(mssg) {
     let obj = {toastLife: '3000'};
     this.toastr.warning(mssg, 'Alert!', obj);
+  }
+
+  showHide(){
+    return !this.app_comp.showHide();
   }
 
 }

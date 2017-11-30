@@ -35,6 +35,8 @@ import { SplashComponent } from './components/splash/splash.component';
 import { ManagementComponent } from './components/management/management.component';
 import { AddAdminModalComponent } from './components/management/add-admin-modal/add-admin-modal.component';
 import { DeleteAdminModalComponent } from './components/management/delete-admin-modal/delete-admin-modal.component';
+import { AddSubscribersComponent } from './components/add-subscribers/add-subscribers.component';
+import { DeleteSubscribersComponent } from './components/delete-subscribers/delete-subscribers.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { DeleteAdminModalComponent } from './components/management/delete-admin-
     ManagementComponent,
     AddAdminModalComponent,
     DeleteAdminModalComponent,
+    AddSubscribersComponent,
+    DeleteSubscribersComponent,
   ],
   imports: [
     BrowserModule,

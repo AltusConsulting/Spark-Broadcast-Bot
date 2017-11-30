@@ -1,0 +1,14 @@
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+     {{question}}
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-info" (click)="deleteSubscriber()">Delete</button>
+    <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+  </div>
+</ng-template>
+
+<span class="col text-right"><i (click)="openModal(template)" class="fa fa-times" aria-hidden="true"></i></span>

@@ -1,0 +1,19 @@
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+      <form #subscriberForm="ngForm" role="form" name="subscriberForm" novalidate>
+          <div class="form-group">
+              <label for="userEmail">Emails: </label>
+              <input type="text" class="form-control" name="userEmail" [(ngModel)]="subscriber.email">
+          </div>
+      </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-info" (click)="addSubscriber(subscriberForm)" [disabled]="!dataCheck()">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+  </div>
+</ng-template>
+<button id="buttonsubscriber" class="btn btn-info" style="margin-left: 3em;
+" type="button" (click)="openModal(template)">Add</button>
