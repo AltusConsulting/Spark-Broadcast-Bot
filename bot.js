@@ -115,6 +115,12 @@ var adminController = Broadcast.admins({
     api_base_url: api_base_url
 });
 
+var subscriptionsController = Broadcast.subscriptions({
+    storage: controller.storage,
+    token_secret: process.env.SECRET,
+    api_base_url: api_base_url
+})
+
 
 // Start Bot API
 controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
@@ -154,6 +160,10 @@ controller.setupWebserver(process.env.PORT || 3000, function(err, webserver) {
 
     adminController.createAdminEndpoints(webserver, bot, function() {
         console.log("Broadcast Bot: Admin endpoints set up!");
+    });
+
+    subscriptionsController.createSubscriptionsEndpoints(webserver, bot, function() {
+        console.log("Broadcast Bot: Subscriptions endpoints set up!")
     });
 
     webserver.get('/*', function(req, res) {
