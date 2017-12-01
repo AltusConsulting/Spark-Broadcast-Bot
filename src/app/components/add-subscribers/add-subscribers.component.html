@@ -6,12 +6,16 @@
       <form #subscriberForm="ngForm" role="form" name="subscriberForm" novalidate>
           <div class="form-group">
               <label for="userEmail">Emails: </label>
-              <ng-select  [multiple]="true"
-              [items]="items"
-              (selected)="selected($event)"
-              (removed)="removed($event)"
-              (typed)="typed($event)"></ng-select>
+
+              <span id="buttonAddSubscriber" class="fa fa-plus" type="button" (click)="addTypedEmailToList()"></span>
+                  <ng-select #select [multiple]="true"
+                  [items]="items"
+                  (selected)="selected($event)"
+                  (removed)="removed($event)"
+                  (typed)="typed($event)"></ng-select>
+                  
           </div>
+          
       </form>
   </div>
   <div class="modal-footer">

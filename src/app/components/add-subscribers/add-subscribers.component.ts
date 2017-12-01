@@ -1,35 +1,42 @@
-import { Component, OnInit, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input, ViewChild, ElementRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { NotificationsService } from '../../shared/services/notifications/notifications.service';
+import { SubscriptionsService } from '../../shared/services/subscriptions/subscriptions.service';
 import { MessagesComponent} from "../../components/messages/messages.component";
-import { Admins } from '../../models/admins/admins';
+import { Subscription } from '../../models/subscription/subscription';
 import * as _ from "lodash";
 
 @Component({
   selector: 'app-add-subscribers',
   templateUrl: './add-subscribers.component.html',
   styleUrls: ['./add-subscribers.component.scss'],
-  providers: [NotificationsService]
+  providers: [SubscriptionsService]
 })
 export class AddSubscribersComponent implements OnInit {
   public modalRef: BsModalRef;
   public title: string;
+  @Input('topic') topic: any;
+
   public selectedSubscribers: Array<any>;
+  public typedEmail: string;
+  public subscription_data: Subscription;
 
   public items:Array<string> = ['gsalazar@altus.cr','ajimenez@altus.cr','ebarquero@altus.cr','rgonzalez@altus.cr'];
+
+  @ViewChild("select") select: ElementRef;
 
 
   constructor(
     private modalService: BsModalService,
-    private _notification: NotificationsService,
+    private _subscription: SubscriptionsService,
     private msgs_comp: MessagesComponent
-  ) {
-    this.title = 'Add subscribers';
-  }
+  ) {}
 
   ngOnInit() {
+    this.title = 'Add subscribers';
     this.selectedSubscribers = new Array<any>();
+    this.subscription_data = new Subscription("",[]);
+    this.typedEmail = "";
   }
 
   public openModal(template: TemplateRef<any>) {
@@ -37,11 +44,26 @@ export class AddSubscribersComponent implements OnInit {
   }
 
   addSubscriber(form){
-    this.selectedSubscribers.forEach( s =>{
-      this.msgs_comp.participants.push(s);
-    });
-    this.clearModel();
-    this.close();
+
+    this.subscription_data.topic = this.topic;
+    this.subscription_data.users = this.selectedSubscribers;
+
+    this._subscription.addSubscription(this.subscription_data)
+    .subscribe(
+      result => {
+        if (result.status == 200) {
+          this.msgs_comp.getParticipants(this.topic);
+          console.log("email added");
+          this.clearModel();
+          this.close();
+        }
+      },
+      error => {
+        console.log(error);
+      }
+    );
+      
+    
     // Add subscription service
   }
 
@@ -56,11 +78,6 @@ export class AddSubscribersComponent implements OnInit {
   }
 
   public selected(value:any):void {
-    let index;
-    index = _.findIndex(this.items, (o) => { 
-      return o == value.text; 
-    });
-
     this.selectedSubscribers.push(value.text);
   }
 
@@ -74,7 +91,11 @@ export class AddSubscribersComponent implements OnInit {
   }
 
   public typed(value:any):void {
-    console.log('New search input: ', value);
+    this.typedEmail = value;
+  }
+
+  public addTypedEmailToList(){
+    this.items.push(this.typedEmail);
   }
 
   close() {

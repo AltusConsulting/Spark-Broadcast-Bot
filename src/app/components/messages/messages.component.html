@@ -39,14 +39,14 @@
               <div class="card">
                   <div class="card-header">
                     {{ participants_header }}
-                    <app-add-subscribers></app-add-subscribers>
+                    <app-add-subscribers [topic]="topic"></app-add-subscribers>
                   </div>
                   
                   <ul class="list-group">
                     <li *ngFor="let obj of participants" class="list-group-item" style="border: none">
                       <i class="fa fa-user-circle-o" aria-hidden="true" [ngStyle]="{'background': 'gray', 'padding':'10px', 'border-radius':'50%', 'color': '#fff'}"></i>
                       <div class="col text-left  text-muted">{{obj}}</div>
-                      <app-delete-subscribers [obj]="obj" [subscribers]="participants"></app-delete-subscribers>
+                      <app-delete-subscribers [topic]="topic" [obj]="obj" [subscribers]="participants"></app-delete-subscribers>
                     </li> 
                   </ul>
                 </div>
