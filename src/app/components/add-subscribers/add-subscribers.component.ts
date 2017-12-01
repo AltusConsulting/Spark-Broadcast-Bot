@@ -15,7 +15,9 @@ import * as _ from "lodash";
 export class AddSubscribersComponent implements OnInit {
   public modalRef: BsModalRef;
   public title: string;
-  public subscriber: Admins;
+  public selectedSubscribers: Array<any>;
+
+  public items:Array<string> = ['gsalazar@altus.cr','ajimenez@altus.cr','ebarquero@altus.cr','rgonzalez@altus.cr'];
 
 
   constructor(
@@ -27,7 +29,7 @@ export class AddSubscribersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscriber = new Admins('','');
+    this.selectedSubscribers = new Array<any>();
   }
 
   public openModal(template: TemplateRef<any>) {
@@ -35,21 +37,44 @@ export class AddSubscribersComponent implements OnInit {
   }
 
   addSubscriber(form){
-    this.msgs_comp.participants.push(this.subscriber.email);
+    this.selectedSubscribers.forEach( s =>{
+      this.msgs_comp.participants.push(s);
+    });
+    this.clearModel();
     this.close();
-    this.subscriber = new Admins('','');
     // Add subscription service
   }
 
   clearModel() {
-    this.subscriber.id = '';
-    this.subscriber.email = '';
+    this.selectedSubscribers = [];
   }
 
   dataCheck() {
-    if (this.subscriber.email) {
+    if (this.selectedSubscribers.length>0) {
       return true;
     }
+  }
+
+  public selected(value:any):void {
+    let index;
+    index = _.findIndex(this.items, (o) => { 
+      return o == value.text; 
+    });
+
+    this.selectedSubscribers.push(value.text);
+  }
+
+  public removed(value:any):void {
+    let index;
+    index = _.findIndex(this.selectedSubscribers, (o) => { 
+      return o == value.text; 
+    });
+
+    this.selectedSubscribers.splice(index,1);
+  }
+
+  public typed(value:any):void {
+    console.log('New search input: ', value);
   }
 
   close() {

@@ -18,7 +18,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 // external libs
-import { SelectModule } from 'ng2-select-compat';
+import { SelectModule } from 'ng2-select';
+//import { SelectModule } from 'ng2-select-compat';
 import { DndModule } from 'ng2-dnd';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 

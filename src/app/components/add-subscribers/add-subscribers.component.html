@@ -6,7 +6,11 @@
       <form #subscriberForm="ngForm" role="form" name="subscriberForm" novalidate>
           <div class="form-group">
               <label for="userEmail">Emails: </label>
-              <input type="text" class="form-control" name="userEmail" [(ngModel)]="subscriber.email">
+              <ng-select  [multiple]="true"
+              [items]="items"
+              (selected)="selected($event)"
+              (removed)="removed($event)"
+              (typed)="typed($event)"></ng-select>
           </div>
       </form>
   </div>
