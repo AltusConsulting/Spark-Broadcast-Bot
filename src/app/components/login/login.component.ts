@@ -32,13 +32,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this._route.queryParams.subscribe(
       result => {
-        console.log(result.code)
         if (result.code !== undefined) {
           this._loginService.getToken(result.code).subscribe(
             res => {
               if (res) {
                 this._router.navigate(['/notifications']);
               } else {
+                this._router.navigate(['/login']);
                 console.log('result:', res);
               }
             },
