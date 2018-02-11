@@ -1,20 +1,12 @@
-<div *ngIf="total_messages == 0">
-    <div class="col text-center">
-        <h3>
-          <small class="text-muted" style="margin-bottom: 0px;">{{message}}</small>
-        </h3>
-        <br>
-      </div>
-</div>
 
-<div *ngIf="total_messages > 0">
+<div>
   <div class="row">
       <div class="col-md-9" style="padding-left:0px; padding-right:0px">
           <div class="card-header" style="border: none">
             <i class="fa fa-comment-o" aria-hidden="true" [ngStyle]="{'background': color, 'padding':'10px', 'border-radius':'50%', 'color': '#fff'}"></i>
             {{topic}}
           </div>
-          <div #scrolly class="center-bar-listgroup">
+          <div *ngIf="total_messages > 0" #scrolly class="center-bar-listgroup">
               <div class="card">
                   <ul class="list-group">
                     <li *ngFor="let obj of filtered_messages | sortgrid: 'time'" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -39,12 +31,15 @@
               <div class="card">
                   <div class="card-header">
                     {{ participants_header }}
+                    <app-add-subscribers [topic]="topic"></app-add-subscribers>
                   </div>
+                  
                   <ul class="list-group">
                     <li *ngFor="let obj of participants" class="list-group-item" style="border: none">
                       <i class="fa fa-user-circle-o" aria-hidden="true" [ngStyle]="{'background': 'gray', 'padding':'10px', 'border-radius':'50%', 'color': '#fff'}"></i>
                       <div class="col text-left  text-muted">{{obj}}</div>
-                    </li>
+                      <app-delete-subscribers [topic]="topic" [obj]="obj" [subscribers]="participants"></app-delete-subscribers>
+                    </li> 
                   </ul>
                 </div>
           </div>

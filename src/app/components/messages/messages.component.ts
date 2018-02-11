@@ -85,6 +85,7 @@ export class MessagesComponent implements OnInit {
   getParticipants(id) {
     this._messages.getParticipants(id).subscribe(
       result => {
+        
         this.participants = result.subscribers;
       },
       error => {

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { LoginService } from '../../shared/services/login/login.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { AppComponent } from '../../app.component'; 
 import * as _ from 'lodash';
 
 @Component({
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _loginService: LoginService,
+    private app_comp: AppComponent,
     public toastr: ToastsManager, 
     vcr: ViewContainerRef
 
@@ -30,26 +32,25 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this._route.queryParams.subscribe(
       result => {
-        _.forEach(result, (obj) => {
-          if (obj.length > 0) {
-            this._loginService.getToken(obj).subscribe(
-              result => {
-                if (result) {
-                  this._router.navigate(['/notifications']);
-                } else {
-                  console.log('result:',result);
-                }
-              },
-              error => {
-                let mssg = 'User does not have permission to access the application!';
-                this.showMessage(mssg);
-                this._router.navigate(['/']);
+        if (result.code !== undefined) {
+          this._loginService.getToken(result.code).subscribe(
+            res => {
+              if (res) {
+                this._router.navigate(['/notifications']);
+              } else {
+                this._router.navigate(['/login']);
+                console.log('result:', res);
               }
-            );
-          } else {
-            console.log("Empty url params");
-          }
-        });
+            },
+            error => {
+              let mssg = 'User does not have permission to access the application!';
+              this.showMessage(mssg);
+              this._router.navigate(['/']);
+            }
+          );
+        } else {
+          console.log("Empty url params");
+        }
       }
     );
   }
@@ -68,6 +69,10 @@ export class LoginComponent implements OnInit {
   showMessage(mssg) {
     let obj = {toastLife: '3000'};
     this.toastr.warning(mssg, 'Alert!', obj);
+  }
+
+  showHide(){
+    return !this.app_comp.showHide();
   }
 
 }

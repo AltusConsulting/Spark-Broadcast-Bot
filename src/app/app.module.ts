@@ -18,7 +18,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 // external libs
-import { SelectModule } from 'ng2-select-compat';
+import { SelectModule } from 'ng2-select';
+//import { SelectModule } from 'ng2-select-compat';
 import { DndModule } from 'ng2-dnd';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
 
@@ -35,6 +36,8 @@ import { SplashComponent } from './components/splash/splash.component';
 import { ManagementComponent } from './components/management/management.component';
 import { AddAdminModalComponent } from './components/management/add-admin-modal/add-admin-modal.component';
 import { DeleteAdminModalComponent } from './components/management/delete-admin-modal/delete-admin-modal.component';
+import { AddSubscribersComponent } from './components/add-subscribers/add-subscribers.component';
+import { DeleteSubscribersComponent } from './components/delete-subscribers/delete-subscribers.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,8 @@ import { DeleteAdminModalComponent } from './components/management/delete-admin-
     ManagementComponent,
     AddAdminModalComponent,
     DeleteAdminModalComponent,
+    AddSubscribersComponent,
+    DeleteSubscribersComponent,
   ],
   imports: [
     BrowserModule,

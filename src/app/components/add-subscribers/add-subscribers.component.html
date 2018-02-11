@@ -1,0 +1,27 @@
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+      <form #subscriberForm="ngForm" role="form" name="subscriberForm" novalidate>
+          <div class="form-group">
+              <label for="userEmail">Emails: </label>
+
+              <span id="buttonAddSubscriber" class="fa fa-plus" type="button" (click)="addTypedEmailToList()"></span>
+                  <ng-select #select [multiple]="true"
+                  [items]="items"
+                  (selected)="selected($event)"
+                  (removed)="removed($event)"
+                  (typed)="typed($event)"></ng-select>
+                  
+          </div>
+          
+      </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-info" (click)="addSubscriber(subscriberForm)" [disabled]="!dataCheck()">Add</button>
+    <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+  </div>
+</ng-template>
+<button id="buttonsubscriber" class="btn btn-info" style="margin-left: 3em;
+" type="button" (click)="openModal(template)">Add</button>
