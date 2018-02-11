@@ -21,7 +21,7 @@ export class AddSubscribersComponent implements OnInit {
   public typedEmail: string;
   public subscription_data: Subscription;
 
-  public items:Array<string> = ['gsalazar@altus.cr','ajimenez@altus.cr','ebarquero@altus.cr','rgonzalez@altus.cr'];
+  public items:Array<string> = [];
 
   @ViewChild("select") select: ElementRef;
 
